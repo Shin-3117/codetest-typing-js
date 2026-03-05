@@ -28,6 +28,11 @@ import {
   testScript as dfsTestScript,
   referenceSolution as dfsReferenceSolution,
 } from "./problems/dfs";
+import {
+  starterCode as kruskalStarterCode,
+  testScript as kruskalTestScript,
+  referenceSolution as kruskalReferenceSolution,
+} from "./problems/kruskal";
 
 export type ProblemDefinition = {
   key: string;
@@ -139,6 +144,22 @@ export const problems: ProblemDefinition[] =
       testScript: dfsTestScript,
       referenceSolution:
         dfsReferenceSolution,
+    },
+    {
+      key: "kruskal",
+      title: "Kruskal MST (Union by Rank)",
+      description:
+        "Implement Kruskal's algorithm for MST using Union-Find with union by rank.",
+      hints: [
+        "Sort edges by weight ascending and add only edges that do not create a cycle.",
+        "Use parent/rank arrays and path compression in find().",
+        "Return both total weight and selected MST edges.",
+      ],
+      starterCode: kruskalStarterCode,
+      requiredGlobals: ["kruskalMST"],
+      testScript: kruskalTestScript,
+      referenceSolution:
+        kruskalReferenceSolution,
     },
   ];
 
