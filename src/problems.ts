@@ -33,6 +33,11 @@ import {
   testScript as kruskalTestScript,
   referenceSolution as kruskalReferenceSolution,
 } from "./problems/kruskal";
+import {
+  starterCode as unionFindStarterCode,
+  testScript as unionFindTestScript,
+  referenceSolution as unionFindReferenceSolution,
+} from "./problems/unionFind";
 
 export type ProblemDefinition = {
   key: string;
@@ -160,6 +165,22 @@ export const problems: ProblemDefinition[] =
       testScript: kruskalTestScript,
       referenceSolution:
         kruskalReferenceSolution,
+    },
+    {
+      key: "unionFind",
+      title: "Union-Find (Disjoint Set Union)",
+      description:
+        "Implement Union-Find with path compression and union by rank.",
+      hints: [
+        "Initialize parent[i] = i and rank[i] = 0.",
+        "find(x) should compress path to flatten trees.",
+        "union(a, b) should merge by rank and return false when already connected.",
+      ],
+      starterCode: unionFindStarterCode,
+      requiredGlobals: ["UnionFind"],
+      testScript: unionFindTestScript,
+      referenceSolution:
+        unionFindReferenceSolution,
     },
   ];
 
