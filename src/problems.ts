@@ -29,6 +29,11 @@ import {
   referenceSolution as dfsReferenceSolution,
 } from "./problems/dfs";
 import {
+  starterCode as backtrackingStarterCode,
+  testScript as backtrackingTestScript,
+  referenceSolution as backtrackingReferenceSolution,
+} from "./problems/backtracking";
+import {
   starterCode as kruskalStarterCode,
   testScript as kruskalTestScript,
   referenceSolution as kruskalReferenceSolution,
@@ -149,6 +154,22 @@ export const problems: ProblemDefinition[] =
       testScript: dfsTestScript,
       referenceSolution:
         dfsReferenceSolution,
+    },
+    {
+      key: "backtracking",
+      title: "Backtracking Permutations",
+      description:
+        "Implement backtracking to generate all permutations of an array of unique numbers.",
+      hints: [
+        "Track the current path and which indexes are already used.",
+        "Classic pattern: choose -> recurse -> undo.",
+        "Push a copied path into the result when the path length reaches nums.length.",
+      ],
+      starterCode: backtrackingStarterCode,
+      requiredGlobals: ["permute"],
+      testScript: backtrackingTestScript,
+      referenceSolution:
+        backtrackingReferenceSolution,
     },
     {
       key: "kruskal",
