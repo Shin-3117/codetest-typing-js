@@ -13,6 +13,7 @@ type MonacoEditorComponent = (
 type Props = {
   title: string;
   description: string;
+  tags?: string[];
   hints: string[];
   referenceSolution?: string;
   code: string;
@@ -26,6 +27,7 @@ type Props = {
 export default function Editors({
   title,
   description,
+  tags,
   hints,
   referenceSolution,
   code,
@@ -98,6 +100,18 @@ export default function Editors({
         <p className="text-xs text-slate-700">
           {description}
         </p>
+        {tags && tags.length > 0 ? (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-slate-300 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-700"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
         <ul className="mt-3 list-disc space-y-1 pl-4 text-xs text-slate-700">
           {hints.map((hint) => (
             <li key={hint}>{hint}</li>

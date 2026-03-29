@@ -19,6 +19,11 @@ import {
   referenceSolution as stackReferenceSolution,
 } from "./problems/stack";
 import {
+  starterCode as gcdLcmStarterCode,
+  testScript as gcdLcmTestScript,
+  referenceSolution as gcdLcmReferenceSolution,
+} from "./problems/gcdLcm";
+import {
   starterCode as bfsStarterCode,
   testScript as bfsTestScript,
   referenceSolution as bfsReferenceSolution,
@@ -48,6 +53,7 @@ export type ProblemDefinition = {
   key: string;
   title: string;
   description: string;
+  tags?: string[];
   hints: string[];
   starterCode: string;
   requiredGlobals: string[];
@@ -123,6 +129,31 @@ export const problems: ProblemDefinition[] =
       testScript: stackTestScript,
       referenceSolution:
         stackReferenceSolution,
+    },
+    {
+      key: "gcdLcm",
+      title: "GCD + LCM",
+      description:
+        "Implement gcd(a, b) and lcm(a, b) together. Return non-negative results, and return 0 for lcm when either input is 0.",
+      tags: [
+        "gcd",
+        "lcm",
+        "math",
+        "number theory",
+        "최대공약수",
+        "최소공배수",
+        "유클리드 호제법",
+      ],
+      hints: [
+        "gcd는 유클리드 호제법으로 풀면 됩니다: b가 0이 될 때까지 gcd(b, a % b).",
+        "lcm은 0 처리 후 |a * b| / gcd(a, b) 공식을 쓰면 깔끔합니다.",
+        "음수 입력이 들어와도 결과는 음수가 아닌 값으로 맞추세요.",
+      ],
+      starterCode: gcdLcmStarterCode,
+      requiredGlobals: ["gcd", "lcm"],
+      testScript: gcdLcmTestScript,
+      referenceSolution:
+        gcdLcmReferenceSolution,
     },
     {
       key: "bfs",

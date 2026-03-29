@@ -175,6 +175,7 @@ export default function App() {
         <Editors
           title={selectedProblem.title}
           description={selectedProblem.description}
+          tags={selectedProblem.tags}
           hints={selectedProblem.hints}
           referenceSolution={selectedProblem.referenceSolution}
           code={code}
