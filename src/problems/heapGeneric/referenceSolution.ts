@@ -1,69 +1,54 @@
-const referenceSolution = `globalThis.Heap = class Heap {
-  constructor(compare) {
-    this.compare = compare;
-    this.data = [];
+const referenceSolution = `globalThis.Heap = class {
+  constructor(compare = (a, b) => a < b) {
+    this.cmp = compare;
+    this.heap = [];
   }
 
   size() {
-    return this.data.length;
+    return this.heap.length;
   }
 
   peek() {
-    return this.data[0];
+    return this.heap[0];
   }
 
   push(value) {
-    this.data.push(value);
-    this._up(this.data.length - 1);
-  }
+    const h = this.heap;
+    h.push(value);
 
-  pop() {
-    if (this.data.length === 0) return undefined;
-    if (this.data.length === 1) return this.data.pop();
-    const top = this.data[0];
-    this.data[0] = this.data.pop();
-    this._down(0);
-    return top;
-  }
-
-  _parent(i) {
-    return (i - 1) >> 1;
-  }
-
-  _left(i) {
-    return i * 2 + 1;
-  }
-
-  _right(i) {
-    return i * 2 + 2;
-  }
-
-  _swap(i, j) {
-    [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
-  }
-
-  _up(i) {
+    let i = h.length - 1;
     while (i > 0) {
-      const p = this._parent(i);
-      if (!this.compare(this.data[i], this.data[p])) break;
-      this._swap(i, p);
+      const p = (i - 1) >> 1;
+      if (!this.cmp(h[i], h[p])) break;
+      [h[i], h[p]] = [h[p], h[i]];
       i = p;
     }
   }
 
-  _down(i) {
-    const n = this.data.length;
+  pop() {
+    const h = this.heap;
+    if (h.length === 0) return undefined;
+    if (h.length === 1) return h.pop();
+
+    const top = h[0];
+    h[0] = h.pop();
+
+    let i = 0;
     while (true) {
-      let best = i;
-      const l = this._left(i);
-      const r = this._right(i);
-      if (l < n && this.compare(this.data[l], this.data[best])) best = l;
-      if (r < n && this.compare(this.data[r], this.data[best])) best = r;
-      if (best === i) break;
-      this._swap(i, best);
-      i = best;
+      let t = i;
+      const l = i * 2 + 1;
+      const r = i * 2 + 2;
+
+      if (l < h.length && this.cmp(h[l], h[t])) t = l;
+      if (r < h.length && this.cmp(h[r], h[t])) t = r;
+      if (t === i) break;
+
+      [h[i], h[t]] = [h[t], h[i]];
+      i = t;
     }
+
+    return top;
   }
-};`;
+};`
 
 export default referenceSolution;

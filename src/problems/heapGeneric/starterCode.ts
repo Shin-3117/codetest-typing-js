@@ -1,15 +1,15 @@
 const starterCode = `globalThis.Heap = class Heap {
-  constructor(compare) {
-    this.compare = compare;
-    this.data = [];
+  constructor(compare = (a, b) => a < b) {
+    this.cmp = compare;
+    this.heap = [];
   }
 
   size() {
-    return this.data.length;
+    return this.heap.length;
   }
 
   peek() {
-    return this.data[0];
+    return this.heap[0];
   }
 
   push(value) {
@@ -17,30 +17,6 @@ const starterCode = `globalThis.Heap = class Heap {
   }
 
   pop() {
-    // TODO
-  }
-
-  _parent(i) {
-    return (i - 1) >> 1;
-  }
-
-  _left(i) {
-    return i * 2 + 1;
-  }
-
-  _right(i) {
-    return i * 2 + 2;
-  }
-
-  _swap(i, j) {
-    [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
-  }
-
-  _up(i) {
-    // TODO
-  }
-
-  _down(i) {
     // TODO
   }
 };`;
