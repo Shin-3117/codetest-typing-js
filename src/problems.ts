@@ -44,6 +44,11 @@ import {
   referenceSolution as kruskalReferenceSolution,
 } from "./problems/kruskal";
 import {
+  starterCode as dijkstraStarterCode,
+  testScript as dijkstraTestScript,
+  referenceSolution as dijkstraReferenceSolution,
+} from "./problems/dijkstra";
+import {
   starterCode as unionFindStarterCode,
   testScript as unionFindTestScript,
   referenceSolution as unionFindReferenceSolution,
@@ -217,6 +222,22 @@ export const problems: ProblemDefinition[] =
       testScript: kruskalTestScript,
       referenceSolution:
         kruskalReferenceSolution,
+    },
+    {
+      key: "dijkstra",
+      title: "Dijkstra Shortest Path",
+      description:
+        "Implement Dijkstra on a weighted adjacency-list graph and return shortest distances from start.",
+      hints: [
+        "Initialize all known node distances with Infinity, and start with 0.",
+        "Repeatedly pick the unprocessed node with the smallest distance.",
+        "Relax each edge: if dist[u] + w < dist[v], update dist[v].",
+      ],
+      starterCode: dijkstraStarterCode,
+      requiredGlobals: ["dijkstra"],
+      testScript: dijkstraTestScript,
+      referenceSolution:
+        dijkstraReferenceSolution,
     },
     {
       key: "unionFind",
