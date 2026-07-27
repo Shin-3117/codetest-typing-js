@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import ProblemSelector from './components/ProblemSelector';
-import Editors from './components/Editors';
+import { CodeEditorPanel, ProblemPanel } from './components/Editors';
 import StatsPanel from './components/StatsPanel';
 import ResultPanel from './components/ResultPanel';
 import AttemptsPanel from './components/AttemptsPanel';
@@ -171,38 +171,48 @@ export default function App() {
             </button>
           </div>
         </header>
+        <section className="grid items-start gap-3 lg:grid-cols-2">
+          {/* 설명 */}
+          <div className="space-y-3">
+            <ProblemPanel
+              title={selectedProblem.title}
+              description={selectedProblem.description}
+              tags={selectedProblem.tags}
+              hints={selectedProblem.hints}
+              referenceSolution={selectedProblem.referenceSolution}
+              showHints={showHints}
+              onToggleHints={() => setShowHints((prev) => !prev)}
+            />
 
-        <Editors
-          title={selectedProblem.title}
-          description={selectedProblem.description}
-          tags={selectedProblem.tags}
-          hints={selectedProblem.hints}
-          referenceSolution={selectedProblem.referenceSolution}
-          code={code}
-          showHints={showHints}
-          onToggleHints={() => setShowHints((prev) => !prev)}
-          onChangeCode={(next) => {
-            setCode(next);
-            setSession((prev) => applyEditorChange(prev, next, Date.now(), false));
-          }}
-          onBackspace={(count) => {
-            if (count <= 0) return;
-            setSession((prev) => ({ ...prev, backspaces: prev.backspaces + count }));
-          }}
-          onPaste={() => {
-            setSession((prev) => ({ ...prev, pasteDetected: true }));
-          }}
-        />
+          </div>
 
-        <section className="grid gap-3 lg:grid-cols-3">
-          <StatsPanel metrics={liveMetrics} running={session.armed} />
-          <ResultPanel result={result} />
-          <AttemptsPanel
-            bestStats={bestStats}
-            attempts={attempts}
-            onClearProblem={() => void onClearProblem()}
-            onClearAll={() => void onClearAll()}
-          />
+          {/* 입력 / 결과 */}
+          <div className="space-y-3">
+            <CodeEditorPanel
+              code={code}
+              showHints={showHints}
+              onToggleHints={() => setShowHints((prev) => !prev)}
+              onChangeCode={(next) => {
+                setCode(next);
+                setSession((prev) => applyEditorChange(prev, next, Date.now(), false));
+              }}
+              onBackspace={(count) => {
+                if (count <= 0) return;
+                setSession((prev) => ({ ...prev, backspaces: prev.backspaces + count }));
+              }}
+              onPaste={() => {
+                setSession((prev) => ({ ...prev, pasteDetected: true }));
+              }}
+            />
+            <ResultPanel result={result} />
+            <AttemptsPanel
+                bestStats={bestStats}
+                attempts={attempts}
+                onClearProblem={() => void onClearProblem()}
+                onClearAll={() => void onClearAll()}
+            />
+            <StatsPanel metrics={liveMetrics} running={session.armed} />
+          </div>
         </section>
       </div>
     </main>
