@@ -4,21 +4,6 @@ import {
   referenceSolution as heapReferenceSolution,
 } from "./problems/heapGeneric";
 import {
-  starterCode as priorityQueueStarterCode,
-  testScript as priorityQueueTestScript,
-  referenceSolution as priorityQueueReferenceSolution,
-} from "./problems/priorityQueue";
-import {
-  starterCode as queueStarterCode,
-  testScript as queueTestScript,
-  referenceSolution as queueReferenceSolution,
-} from "./problems/queue";
-import {
-  starterCode as stackStarterCode,
-  testScript as stackTestScript,
-  referenceSolution as stackReferenceSolution,
-} from "./problems/stack";
-import {
   starterCode as gcdLcmStarterCode,
   testScript as gcdLcmTestScript,
   referenceSolution as gcdLcmReferenceSolution,
@@ -53,6 +38,11 @@ import {
   testScript as unionFindTestScript,
   referenceSolution as unionFindReferenceSolution,
 } from "./problems/unionFind";
+import {
+  starterCode as binarySearchStarterCode,
+  testScript as binarySearchTestScript,
+  referenceSolution as binarySearchReferenceSolution,
+} from "./problems/binarySearch";
 
 export type ProblemDefinition = {
   key: string;
@@ -84,57 +74,57 @@ export const problems: ProblemDefinition[] =
       referenceSolution:
         heapReferenceSolution,
     },
-    {
-      key: "queue",
-      title: "Queue",
-      description:
-        "Implement FIFO queue with enqueue/dequeue/peek/size.",
-      hints: [
-        "Use array + head index for O(1) dequeue.",
-        "Return undefined when removing from empty queue.",
-      ],
-      starterCode: queueStarterCode,
-      requiredGlobals: ["Queue"],
-      testScript: queueTestScript,
-      referenceSolution:
-        queueReferenceSolution,
-    },
-    {
-      key: "priorityQueue",
-      title: "Priority Queue via Heap",
-      description:
-        "Wrap generic Heap and expose enqueue/dequeue/peek/size.",
-      hints: [
-        "Implement Heap first or paste a working heap inside this file.",
-        "PriorityQueue should compose Heap instead of reimplementing heap operations.",
-        "Allow custom comparator in constructor and define a safe default comparator.",
-      ],
-      starterCode:
-        priorityQueueStarterCode,
-      requiredGlobals: [
-        "Heap",
-        "PriorityQueue",
-      ],
-      testScript:
-        priorityQueueTestScript,
-      referenceSolution:
-        priorityQueueReferenceSolution,
-    },
-    {
-      key: "stack",
-      title: "Stack",
-      description:
-        "Implement LIFO stack with push/pop/peek/size.",
-      hints: [
-        "Array push/pop gives O(1) average stack operations.",
-        "Return undefined when empty.",
-      ],
-      starterCode: stackStarterCode,
-      requiredGlobals: ["Stack"],
-      testScript: stackTestScript,
-      referenceSolution:
-        stackReferenceSolution,
-    },
+    // {
+    //   key: "queue",
+    //   title: "Queue",
+    //   description:
+    //     "Implement FIFO queue with enqueue/dequeue/peek/size.",
+    //   hints: [
+    //     "Use array + head index for O(1) dequeue.",
+    //     "Return undefined when removing from empty queue.",
+    //   ],
+    //   starterCode: queueStarterCode,
+    //   requiredGlobals: ["Queue"],
+    //   testScript: queueTestScript,
+    //   referenceSolution:
+    //     queueReferenceSolution,
+    // },
+    // {
+    //   key: "priorityQueue",
+    //   title: "Priority Queue via Heap",
+    //   description:
+    //     "Wrap generic Heap and expose enqueue/dequeue/peek/size.",
+    //   hints: [
+    //     "Implement Heap first or paste a working heap inside this file.",
+    //     "PriorityQueue should compose Heap instead of reimplementing heap operations.",
+    //     "Allow custom comparator in constructor and define a safe default comparator.",
+    //   ],
+    //   starterCode:
+    //     priorityQueueStarterCode,
+    //   requiredGlobals: [
+    //     "Heap",
+    //     "PriorityQueue",
+    //   ],
+    //   testScript:
+    //     priorityQueueTestScript,
+    //   referenceSolution:
+    //     priorityQueueReferenceSolution,
+    // },
+    // {
+    //   key: "stack",
+    //   title: "Stack",
+    //   description:
+    //     "Implement LIFO stack with push/pop/peek/size.",
+    //   hints: [
+    //     "Array push/pop gives O(1) average stack operations.",
+    //     "Return undefined when empty.",
+    //   ],
+    //   starterCode: stackStarterCode,
+    //   requiredGlobals: ["Stack"],
+    //   testScript: stackTestScript,
+    //   referenceSolution:
+    //     stackReferenceSolution,
+    // },
     {
       key: "gcdLcm",
       title: "GCD + LCM",
@@ -254,6 +244,30 @@ export const problems: ProblemDefinition[] =
       testScript: unionFindTestScript,
       referenceSolution:
         unionFindReferenceSolution,
+    },
+    {
+      key: "binarySearch",
+      title: "Binary Search",
+      description:
+        "Implement binary search on a sorted array. Return the index if target is found, otherwise return -1.",
+      tags: [
+        "binary search",
+        "search",
+        "이진 탐색",
+        "이분 탐색",
+      ],
+      hints: [
+        "left = 0, right = arr.length - 1로 시작합니다.",
+        "while (left <= right) 동안 mid = Math.floor((left + right) / 2)를 계산합니다.",
+        "arr[mid] === target이면 mid를 반환합니다.",
+        "arr[mid] < target이면 left = mid + 1, 그렇지 않으면 right = mid - 1로 범위를 좁힙니다.",
+        "반복이 끝나도 값을 찾지 못하면 -1을 반환합니다.",
+      ],
+      starterCode: binarySearchStarterCode,
+      requiredGlobals: ["binarySearch"],
+      testScript: binarySearchTestScript,
+      referenceSolution:
+        binarySearchReferenceSolution,
     },
   ];
 
