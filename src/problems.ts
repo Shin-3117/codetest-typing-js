@@ -43,6 +43,11 @@ import {
   testScript as binarySearchTestScript,
   referenceSolution as binarySearchReferenceSolution,
 } from "./problems/binarySearch";
+import {
+  starterCode as floydWarshallStarterCode,
+  testScript as floydWarshallTestScript,
+  referenceSolution as floydWarshallReferenceSolution,
+} from "./problems/floydWarshall";
 
 export type ProblemDefinition = {
   key: string;
@@ -268,6 +273,31 @@ export const problems: ProblemDefinition[] =
       testScript: binarySearchTestScript,
       referenceSolution:
         binarySearchReferenceSolution,
+    },
+    {
+      key: "floydWarshall",
+      title: "Floyd-Warshall",
+      description:
+        "Implement the Floyd-Warshall algorithm for all-pairs shortest path in a weighted graph.",
+      tags: [
+        "floyd warshall",
+        "graph",
+        "shortest path",
+        "dynamic programming",
+        "플로이드 워셜",
+        "최단 경로",
+      ],
+      hints: [
+        "k(거쳐가는 노드), i(출발 노드), j(도착 노드) 3중 반복문을 사용합니다.",
+        "dist[i][k]와 dist[k][j]가 모두 Infinity가 아닐 때 경로 갱신 가능성을 확인합니다.",
+        "dist[i][k] + dist[k][j] < dist[i][j] 이면 dist[i][j]를 갱신합니다.",
+        "원본 그래프 보존을 위해 그래프 복사본 dist를 사용합니다.",
+      ],
+      starterCode: floydWarshallStarterCode,
+      requiredGlobals: ["floydWarshall"],
+      testScript: floydWarshallTestScript,
+      referenceSolution:
+        floydWarshallReferenceSolution,
     },
   ];
 
