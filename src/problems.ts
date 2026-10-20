@@ -44,6 +44,11 @@ import {
   referenceSolution as binarySearchReferenceSolution,
 } from "./problems/binarySearch";
 import {
+  starterCode as parametricSearchStarterCode,
+  testScript as parametricSearchTestScript,
+  referenceSolution as parametricSearchReferenceSolution,
+} from "./problems/parametricSearch";
+import {
   starterCode as floydWarshallStarterCode,
   testScript as floydWarshallTestScript,
   referenceSolution as floydWarshallReferenceSolution,
@@ -273,6 +278,33 @@ export const problems: ProblemDefinition[] =
       testScript: binarySearchTestScript,
       referenceSolution:
         binarySearchReferenceSolution,
+    },
+    {
+      key: "parametricSearch",
+      title: "Parametric Search",
+      description:
+        "Find the smallest integer in the inclusive range [left, right] that satisfies check. Assume check is monotonic (false, then true). Return -1 if no value satisfies check.",
+      tags: [
+        "parametric search",
+        "binary search",
+        "lower bound",
+        "파라메트릭 서치",
+        "매개 변수 탐색",
+        "이분 탐색",
+        "결정 문제",
+      ],
+      hints: [
+        "check(mid)는 mid가 조건을 만족하는지 반환하는 단조로운 결정 함수입니다. 값이 커질수록 false에서 true로 바뀝니다.",
+        "answer = -1로 시작하고, left <= right인 동안 mid = Math.floor((left + right) / 2)를 계산합니다.",
+        "check(mid)가 true이면 answer = mid로 저장하고, 더 작은 답을 찾기 위해 right = mid - 1로 줄입니다.",
+        "check(mid)가 false이면 left = mid + 1로 늘립니다.",
+        "반복이 끝나면 answer를 반환합니다. 조건을 만족하는 값이 없거나 탐색 범위가 비어 있으면 -1입니다.",
+      ],
+      starterCode: parametricSearchStarterCode,
+      requiredGlobals: ["parametricSearch"],
+      testScript: parametricSearchTestScript,
+      referenceSolution:
+        parametricSearchReferenceSolution,
     },
     {
       key: "floydWarshall",
