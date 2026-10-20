@@ -35,16 +35,16 @@ const referenceSolution = `globalThis.Heap = class {
 
     let i = 0;
     while (true) {
-      let t = i;
+      let p = i;
       const l = i * 2 + 1;
       const r = i * 2 + 2;
 
-      if (l < h.length && this.cmp(h[l], h[t])) t = l;
-      if (r < h.length && this.cmp(h[r], h[t])) t = r;
-      if (t === i) break;
+      if (l < h.length && this.cmp(h[l], h[p])) p = l;
+      if (r < h.length && this.cmp(h[r], h[p])) p = r;
+      if (p === i) break;
 
-      [h[i], h[t]] = [h[t], h[i]];
-      i = t;
+      [h[i], h[p]] = [h[p], h[i]];
+      i = p;
     }
 
     return top;
