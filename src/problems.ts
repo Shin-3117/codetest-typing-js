@@ -4,6 +4,11 @@ import {
   referenceSolution as heapReferenceSolution,
 } from "./problems/heapGeneric";
 import {
+  starterCode as defaultCompareStarterCode,
+  testScript as defaultCompareTestScript,
+  referenceSolution as defaultCompareReferenceSolution,
+} from "./problems/defaultCompare";
+import {
   starterCode as gcdLcmStarterCode,
   testScript as gcdLcmTestScript,
   referenceSolution as gcdLcmReferenceSolution,
@@ -84,6 +89,27 @@ export const problems: ProblemDefinition[] =
       testScript: heapTestScript,
       referenceSolution:
         heapReferenceSolution,
+    },
+    {
+      key: "defaultCompare",
+      title: "타입별 compare 연산",
+      description:
+        "number, string, bigint, Date 타입을 비교하는 defaultCompare(a, b)를 구현하세요. a가 작으면 음수, 같으면 0, 크면 양수를 반환하고, 지원하지 않거나 서로 다른 타입이면 TypeError를 던집니다. 기본 비교는 오름차순(1, 2, 3, 4) 기준이며, 내림차순은 반대 순서(4, 3, 2, 1)입니다.",
+      tags: ["compare", "comparator", "비교 함수", "타입별 비교", "정렬"],
+      hints: [
+        "compare(a, b)의 반환값이 음수면 a가 먼저, 양수면 b가 먼저, 0이면 같은 우선순위입니다. -1이나 1일 필요 없이 부호가 중요합니다.",
+        "숫자에서 a - b는 오름차순(1, 2, 3, 4), b - a는 내림차순(4, 3, 2, 1)입니다.",
+        "arr.sort(defaultCompare)는 오름차순, arr.sort((a, b) => defaultCompare(b, a))는 인자 순서를 바꿔 내림차순으로 정렬합니다.",
+        "이 프로젝트의 Heap에 defaultCompare를 넘기면 최소 힙으로 작은 값부터 pop()됩니다. (a, b) => defaultCompare(b, a)를 넘기면 최대 힙으로 큰 값부터 pop()됩니다. 힙 내부 배열 전체가 정렬되는 것은 아닙니다.",
+        "number는 a - b, string은 a.localeCompare(b)로 비교합니다.",
+        "bigint는 대소 비교 후 숫자 -1, 0, 1을 반환합니다.",
+        "Date는 instanceof로 확인하고 getTime() 값의 차이를 반환합니다.",
+        "모든 조건에 해당하지 않으면 new TypeError(\"Unsupported compare types\")를 던집니다.",
+      ],
+      starterCode: defaultCompareStarterCode,
+      requiredGlobals: ["defaultCompare"],
+      testScript: defaultCompareTestScript,
+      referenceSolution: defaultCompareReferenceSolution,
     },
     // {
     //   key: "queue",
