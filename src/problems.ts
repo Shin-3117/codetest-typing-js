@@ -74,7 +74,8 @@ export const problems: ProblemDefinition[] =
       description:
         "Implement a generic binary heap with comparator. Must support min-heap and max-heap.",
       hints: [
-        "Use compare(a,b) to decide priority. compare=true means a should be above b.",
+        "Like Array.sort, compare(a,b) < 0 means a should be above b; 0 means equal priority, and > 0 means b should be above a.",
+        "Use (a,b) => a - b for a min-heap (default), or (a,b) => b - a for a max-heap.",
         "push: append + bubble up, pop: swap root with last + bubble down.",
         "Maintain helpers _parent/_left/_right/_swap for clarity.",
       ],

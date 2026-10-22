@@ -1,5 +1,5 @@
 const starterCode = `globalThis.Heap = class Heap {
-  constructor(compare = (a, b) => a < b) {
+  constructor(compare = (a, b) => a - b) {
     this.cmp = compare;
     this.heap = [];
   }

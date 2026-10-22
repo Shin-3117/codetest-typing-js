@@ -1,5 +1,5 @@
 const referenceSolution = `globalThis.Heap = class {
-  constructor(compare = (a, b) => a < b) {
+  constructor(compare = (a, b) => a - b) {
     this.cmp = compare;
     this.heap = [];
   }
@@ -18,8 +18,8 @@ const referenceSolution = `globalThis.Heap = class {
 
     let i = h.length - 1;
     while (i > 0) {
-      const p = (i - 1) >> 1;
-      if (!this.cmp(h[i], h[p])) break;
+      const p = Math.floor((i - 1) / 2);
+      if (this.cmp(h[i], h[p]) >= 0) break;
       [h[i], h[p]] = [h[p], h[i]];
       i = p;
     }
@@ -39,8 +39,8 @@ const referenceSolution = `globalThis.Heap = class {
       const l = i * 2 + 1;
       const r = i * 2 + 2;
 
-      if (l < h.length && this.cmp(h[l], h[p])) p = l;
-      if (r < h.length && this.cmp(h[r], h[p])) p = r;
+      if (l < h.length && this.cmp(h[l], h[p]) < 0) p = l;
+      if (r < h.length && this.cmp(h[r], h[p]) < 0) p = r;
       if (p === i) break;
 
       [h[i], h[p]] = [h[p], h[i]];
